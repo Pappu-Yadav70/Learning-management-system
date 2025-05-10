@@ -1,31 +1,33 @@
+
 import express from 'express';
 import cors from 'cors';
-import 'dotenv/config';
+import 'dotenv/config'
 import connectDB from './config/mongodb.js';
 import { clerkwebhooks } from './controllers/webhooks.js';
-import bodyParser from 'body-parser'; // Needed for raw body parsing for Clerk
 
-// ✅ Initialize express
+
+// intialize  express
+
 const app = express();
 
-// ✅ Connect to MongoDB
-await connectDB();
 
-// ✅ Middleware
-app.use(cors()); // Enable CORS so frontend from different origin can access the backend
+// connect to databse
+await connectDB()
 
-// ✅ Raw body parser ONLY for Clerk webhooks (required for signature verification)
-app.use('/clerk', bodyParser.raw({ type: 'application/json' }));
 
-// ✅ Regular JSON parser for all other routes
-app.use(express.json());
+// middleware
+app.use(cors())  //using cors becz we can  connect our backend other domain
 
-// ✅ Routes
-app.get('/', (req, res) => res.send('API WORKING'));
-app.post('/clerk', clerkwebhooks);
+// Routes
+app.get('/', (req,res)=> res.send("API WORKING"))
+app.post('/clerk', express.json(), clerkwebhooks)
 
-// ✅ Server port
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
+
+// port
+const PORT = process.env.PORT || 5000
+
+
+app.listen(PORT,()=>{
+    console.log(`Server is running on port ${PORT}`)
+})
