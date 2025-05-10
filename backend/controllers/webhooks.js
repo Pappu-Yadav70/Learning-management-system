@@ -11,9 +11,10 @@ export const clerkwebhooks = async(req,res)=>{
         
         await  webhook.verify(JSON.stringify(req.body),{
             "svix-id":req.headers['svix-id'],
-            "svix-timestamp":req.headers["svix-timestamp"],
-            "svix-signature":req.headers["svix-signature"]
+            "svix-timestamp": req.headers["svix-timestamp"],
+            "svix-signature": req.headers["svix-signature"]
         })
+        
         //we need data from request body
         const {data,type} = req.body
         switch (type) {
