@@ -1,5 +1,5 @@
 import { Webhook } from "svix";
-import User from "../models/User";
+import User from "../models/User.js";
 
 
 
@@ -14,7 +14,7 @@ export const clerkwebhooks = async(req,res)=>{
             "svix-timestamp": req.headers["svix-timestamp"],
             "svix-signature": req.headers["svix-signature"]
         })
-        
+
         //we need data from request body
         const {data,type} = req.body
         switch (type) {
