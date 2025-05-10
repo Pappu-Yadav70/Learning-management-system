@@ -34,7 +34,7 @@ export const clerkwebhooks = async(req,res)=>{
                 // user updation on database
             case 'user.updated':{
                  const userData = {
-                    email: data.email_address[0].email_address,
+                    email: data.email_addresses[0].email_address,
                     name: data.first_name + " " + data.last_name,
                     image_url: data.image_url,
 
