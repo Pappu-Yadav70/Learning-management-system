@@ -23,7 +23,7 @@ export const clerkwebhooks = async (req, res) => {
           _id: data.id,
           email: data.email_addresses[0].email_address,
           name: `${data.first_name} ${data.last_name}`,
-          image_url: data.imageUrl,
+          imageUrl: data.image_url,
         };
         await User.create(userData); // It will store the data in MongoDB
         console.log("User created:", userData);
@@ -36,7 +36,7 @@ export const clerkwebhooks = async (req, res) => {
         const userData = {
           email: data.email_addresses[0].email_address,
           name: `${data.first_name} ${data.last_name}`,
-          image_url: data.imageUrl,
+          imageUrl: data.image_url,
         };
         await User.findByIdAndUpdate(data.id, userData); // Used findByIdAndUpdate method because we are updating the user data
         console.log("User updated:", data.id);
